@@ -1,0 +1,106 @@
+:root{
+    --base-clr: #11121a;
+    --line-clr: #42434a;
+    --hover-clr: #222533;
+    --text-clr: #e6e6ef;
+    --accent-clr: #5e63ff;
+    --secondary-text-clr: #b0b3c1;
+    --secondary-text-clr2:#7c7f8d;
+  }
+
+  *{
+    margin: 0;
+    padding: 0;
+  }
+  
+  html{
+    font-family: Poppins, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.5rem;
+  }
+
+  body{
+    min-height: 100vh;
+    min-height: 100dvh;
+    background-color: var(--base-clr);
+    color: var(--text-clr);
+    /* display: grid;
+    grid-template-columns: auto 1fr; */
+  }
+
+
+main{
+    padding: min(30px, 7%);
+    display: flex;
+    justify-content: center;
+  }
+
+.container h2{
+    text-align: center;
+    margin: .5em 0;
+} 
+
+.container p.fail{
+    text-align: center;
+    margin-left: 6rem;
+    color: red;
+    transition: all 0.3s ease;
+}
+
+.container form,
+main .bot{
+   margin-left: 6rem;
+}
+
+.container form input{
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: .5em 0;
+  border-radius: .2em;
+  padding-left: .2em;
+  font-size: 1.05em;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.container form input:focus{
+    background-color: var(--secondary-text-clr);
+}
+
+  main p,
+  main label{
+    color: var(--secondary-text-clr);
+    margin-top: 5px;
+    margin-bottom: 15px;
+  }
+
+  main{
+    padding: min(30px, 7%);
+  }
+
+  .container{
+    width: 30%;
+    border: 1px solid var(--line-clr);
+    border-radius: 1em;
+    margin-bottom: 20px;
+    padding: min(2em, 15%);
+    h2, p { margin-top: 1em };
+  }
+
+ .container input[type = "submit"]{
+    font-size: 1.2em;
+    font-weight: 500;
+    cursor: pointer;
+ } 
+
+main .bot{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    gap: .4em;
+}
+
+main .bot a{
+    text-decoration: none;
+    color: var(--accent-clr);
+}
