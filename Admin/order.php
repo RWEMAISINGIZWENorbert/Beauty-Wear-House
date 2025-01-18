@@ -46,6 +46,10 @@
           cursor: pointer;
           font-weight: 500;
           font-size: 1.1em;
+          border-radius: .3rem;
+          border: none;
+          outline: none;
+          padding: 0 .2rem;
        }
 
     </style>

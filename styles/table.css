@@ -149,11 +149,13 @@ td.actions p{
 td.actions .edit{
     background-color: #86e49d;
     color: #006b21;
+    cursor: pointer;
 }
 
 td.actions .delete{
     background-color: #d893a3;
     color: #b30021;
+    cursor: pointer;
 }
 
 td.actions input{

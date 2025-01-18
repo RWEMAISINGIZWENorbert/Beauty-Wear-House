@@ -44,11 +44,11 @@
   
   #sideBar ul{
     list-style: none;
-   padding: 4rem 0;
   }
   
   #sideBar ul li {
     cursor: pointer;
+    padding: .4rem 0;
   }
 
   #sideBar a{
@@ -57,7 +57,9 @@
   }
   
   #sideBar #logout{
-     margin: 4rem 0;
+     /* margin: 4rem 0; */
+      bottom: 0;
+     /* margin: 4rem 0; */
   }
   
   #sideBar #logo{

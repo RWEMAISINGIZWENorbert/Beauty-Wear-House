@@ -27,7 +27,7 @@
    <p>Designed for the small to medium business</p>
    <div class="bot">
       <a href="./Auth/Sign_Up.php"><button id="start">get started</button></a>
-      <a href=""><button id="start">Order now</button></a>
+      <!-- <a href=""><button id="start">Order now</button></a> -->
     </div>
     </div>
     </div>

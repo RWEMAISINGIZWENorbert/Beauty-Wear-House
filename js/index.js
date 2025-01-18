@@ -59,13 +59,14 @@ const customers_table = document.querySelector('#customers_table');
 const toPDF = function (customers_table) {
     const html_code = `
     <!DOCTYPE html>
-    <link rel="stylesheet" type="text/css" href="../styles/table.css">
+    <link rel="stylesheet" href="../styles/table.css">
+    <link rel="stylesheet" href="../styles/admin.css">
     <main class="table" id="customers_table">${customers_table.innerHTML}</main>`;
     const new_window = window.open();
      new_window.document.write(html_code);
     setTimeout(() => {
-        new_window.print();
-        new_window.close();
+        // new_window.print();
+        // new_window.close();
     }, 400);
 }
 

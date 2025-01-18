@@ -62,7 +62,7 @@
     gap: 2em;
   }
    
-  #menuBar ul:nth-child(2) a{
+  #menuBar ul:nth-child(2) a:nth-child(1){
     text-decoration: none;
     color: var(--text-clr);
   }
@@ -85,10 +85,10 @@
     transition: all 0.3s ease;
 }
 
-#menuBar ul:nth-child(2) li:nth-child(2):hover{
+/* #menuBar ul:nth-child(2) li:nth-child(2):hover{
       background-color: var(--line-clr);
       color: var(--text-clr);
-}
+} */
 
 
 .body{
@@ -160,4 +160,5 @@ button#start{
     transition: all 0.3s ease;
     font-size: 1.2em;
     cursor: pointer;
+    animation: moveUp 2s ease-in-out;
 }
