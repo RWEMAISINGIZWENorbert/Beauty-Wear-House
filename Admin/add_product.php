@@ -31,14 +31,14 @@
             <p class="fail"></p>
             <p class="success"></p>
              <h1>Add Product</h1>
-             <form action="" method="POST">
+             <form action="../Controllers/add_product_controller.php" method="POST">
                    <label for="">Product Name</label><br>
-                   <input type="text"><br><br>
+                   <input type="text" name="product_name"><br><br>
                    <label for="">Product Quantity</label><br>
-                   <input type="text"><br><br>
+                   <input type="number" name="product_quantity"><br><br>
                    <label for="">Unity Price</label><br>
-                   <input type="text"><br><br>
-                   <input type="submit" value="Add">
+                   <input type="number" name="unity_price"><br><br>
+                   <input type="submit" name="submit" value="Add">
              </form>
     </div>
     </main>

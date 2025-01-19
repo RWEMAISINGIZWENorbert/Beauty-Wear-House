@@ -65,8 +65,8 @@ const toPDF = function (customers_table) {
     const new_window = window.open();
      new_window.document.write(html_code);
     setTimeout(() => {
-        // new_window.print();
-        // new_window.close();
+        new_window.print();
+        new_window.close();
     }, 400);
 }
 
