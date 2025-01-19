@@ -19,8 +19,8 @@
              <li> <a href="admin_dashboard.php?route=products">Products  </a></li>
              <li><a href="admin_dashboard.php?route=add_product"> Add product </a></li>
              <li><a href="admin_dashboard.php?route=order"> Order </a></li>
-             <li><a href="admin_dashboard.php?route=reports">Reports </a></li>
-             <li><span id="logout">Logout</span></li>
+             <li><a href="admin_dashboard.php?route=reports&report=All">Reports </a></li>
+             <li><a href="../Controllers/logout_controller.php"><span id="logout">Logout</span></a></li>
           </ul>
     </nav>
     <?php

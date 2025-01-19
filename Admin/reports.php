@@ -18,9 +18,10 @@
                 <input type="search" placeholder="Search Data...">
             </div>
             <div class="daily-report">
-                <form action="" method="POST">
-                      <select name="report" id="" onchange="this.form.submit()">
-                          <option value="Today">Today</option>
+                <form action="" method="GET" onchange="this.form.submit()">
+                      <select name="report" id="">
+                          <option value="all">All</option>
+                          <option value="Today" name='data'>Today</option>
                           <option value="week">This Week</option>
                           <option value="month">Month</option>
                       </select>
@@ -52,7 +53,7 @@
                 </thead>
                 <tbody>
                     <?php
-                       $report = isset($_GET['report']) ? $_GET['report']: 'Today';
+                       $report = isset($_GET['report']) ? $_GET['report']: 'all';
                        $sql_command = "SELECT * FROM `order`";                         
                      if($report == 'Today') {
                         $sql_command .= " WHERE DATE(STR_TO_DATE(order_date, '%Y-%m-%d %H:%i:%s')) = CURDATE()";
@@ -60,18 +61,21 @@
                         $sql_command .= " WHERE YEARWEEK(STR_TO_DATE(order_date, '%Y-%m-%d %H:%i:%s'), 1) = YEARWEEK(CURDATE(), 1)";
                     }elseif ($report == 'month') {
                         $sql_command .= " WHERE MONTH(STR_TO_DATE(order_date, '%Y-%m-%d %H:%i:%s')) = MONTH(CURDATE()) AND YEAR(STR_TO_DATE(order_date, '%Y-%m-%d %H:%i:%s')) = YEAR(CURDATE())";
+                    }elseif($report == 'All'){
+                        $sql_command .= "WHERE 1";
                     }
                       
                     $sql_result = $conn->query($sql_command);
-
+                    // echo "done";
                        if($sql_result -> num_rows > 0){
                           while($row = $sql_result->fetch_assoc()){
                             $order_num = $row['order_number'];
+                             $order_date = $row['order_date'];
                               $sql_data = "SELECT * FROM customer WHERE order_number = '$order_num'";
                               $data_result = $conn->query($sql_data);
                               if($data_result->num_rows > 0){
                                    while($data_row = $data_result->fetch_assoc()){
-                                    print_r($data_row);
+                                    // print_r($data_row);
                     ?>
                     <!-- <tr>
                         <td> 1 </td>
@@ -84,36 +88,18 @@
                         <td> <strong> $128.90 </strong></td>
                     </tr> -->
                     <tr>
-                        <td> 3</td>
-                        <td><img src="../images/Sonal Gharti.jpg" alt=""> Sonal Gharti </td>
-                        <td> Tokyo </td>
-                        <td> 14 Mar, 2023 </td>
-                        <td>
-                            45                     </td>
+                        <td><?php echo $data_row['product_code']?></td>
+                        <td><img src="../images/Sonal Gharti.jpg" alt=""><?php echo $data_row['cust_name']?> </td>
+                        <td> <?php echo $data_row['location']?> </td>
+                        <td> <?php echo $order_date ?> </td>
+                        <td><?php echo $data_row['quantity_ordered'] ?> </td>
                         <td> <strong>$210.40</strong> </td>
-                    </tr>
-                    <tr>
-                        <td> 4</td>
-                        <td><img src="../images/Alson GC.jpg" alt=""> Alson GC </td>
-                        <td> New Delhi </td>
-                        <td> 25 May, 2023 </td>
-                        <td>
-                            45
-                        </td>
-                        <td> <strong>$149.70</strong> </td>
-                    </tr>
-                    <tr>
-                        <td> 5</td>
-                        <td><img src="../images/Sarita Limbu.jpg" alt=""> Sarita Limbu </td>
-                        <td> Paris </td>
-                        <td> 23 Apr, 2023 </td>
-                        <td>
-                            45                     </td>
-                        <td> <strong>$399.99</strong> </td>
                     </tr>
                     <?php 
                        }
-                     }
+                     }else{ 
+                        // echo  "failed";
+                    }
                     }
                     }
                     ?>

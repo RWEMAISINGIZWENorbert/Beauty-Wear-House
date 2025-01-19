@@ -1,3 +1,6 @@
+<?php
+   include "../config/db_connect.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,14 +21,14 @@
        }
        .data input{
         width: 100%;
-  border: none;
-  outline: none;
-  padding: .5em 0;
-  border-radius: .2em;
-  padding-left: .2em;
-  font-size: 1.05em;
-  font-weight: 500;
-  transition: all 0.3s ease;
+        border: none;
+        outline: none;
+        padding: .5em 0;
+        border-radius: .2em;
+        padding-left: .2em;
+        font-size: 1.05em;
+        font-weight: 500;
+        transition: all 0.3s ease;
        }
 
        .data input:focus{
@@ -52,10 +55,28 @@
           padding: 0 .2rem;
        }
 
+       .fail{
+        text-align: center;
+        color: red;
+       }
+        .success{
+            text-align: center;
+            color: green;
+            font-weight: bold;
+        }
+
     </style>
 </head>
 <body>
+<form action="../Controllers/order_product_controller.php" method="POST">
 <main class="table" id="customers_table">
+         <?php
+            if(isset($_GET['fail'])){
+                echo "<p class='fail'>*". $_GET['fail']. "*</p>";
+            }elseif(isset($_GET['success'])){
+                echo "<p class='success'>*". $_GET['success']. "*</p>";
+            }
+         ?>
         <section class="table__header">
             <h1>Place Order</h1>
             <!-- <div class="input-group">
@@ -76,44 +97,24 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php
+                     $sql_command = "SELECT * FROM products";
+                     $sql_result = $conn->query($sql_command);
+                       if($sql_result -> num_rows > 0){
+                          while($row = $sql_result->fetch_assoc()){
+                    ?>
                     <tr>
-                        <td> 1 </td>
-                        <td>Maize</td>
-                        <td> 1 </td>
-                        <td> $100 </td>
-                        <td><strong> $128.90 </strong></td>
-                        <td class="actions"><input type="number"></td>
+                        <td> <?php echo $row['productCode']?> </td>
+                        <td><?php echo $row['productName']?></td>
+                        <td><?php echo $row['product_quantity'] ?></td>
+                        <td> <?php echo $row['unit_price']?> </td>
+                        <td><strong><?php echo $row['total_price']?> </strong></td>
+                        <td class="actions"><input type="number" value="0" name="order_quantity[<?php echo $row['productCode']?>]"></td>
                     </tr>
-                    <tr>
-                        <td> 2 </td>
-                        <td>Maize</td>
-                        <td> 1 </td>
-                        <td> $100 </td>
-                        <td><strong> $128.90 </strong></td>
-                        <td class="actions">
-                        <input type="number">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td> 3 </td>
-                        <td>Maize</td>
-                        <td> 1 </td>
-                        <td> $100 </td>
-                        <td><strong> $128.90 </strong></td>
-                        <td class="actions">
-                        <input type="number">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td> 4 </td>
-                        <td>Maize</td>
-                        <td> 1 </td>
-                        <td> $100 </td>
-                        <td><strong> $128.90 </strong></td>
-                        <td class="actions">
-                        <input type="number">
-                        </td>
-                    </tr>
+                    <?php
+                                 }
+                                   }
+                    ?>
                 </tbody>
             </table>
         </section>
@@ -122,19 +123,21 @@
         <div class="data">
           <div class="item">
             <label for="">Customer Name</label><br>
-            <input type="text"><br><br>
+            <input type="text" name="name"><br><br>
             </div>
             <div class="item">
             <label for="">Location</label><br>
-            <input type="text"><br><br>
+            <input type="text" name="location"><br><br>
             </div>
             <div class="item">
             <label for="">Telephone Number</label><br>
-            <input type="text">
+            <input type="text" name="tel">
             </div>
+            <input type="submit" name="submit">
         </div>
-        <input type="submit">
+        <!-- <input type="submit" name="submit"> -->
         </main>
+        </form>
     </main>
 </body>
 </html>
