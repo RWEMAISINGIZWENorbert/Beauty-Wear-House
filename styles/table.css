@@ -47,6 +47,7 @@ main.table {
 
 .input-group input{
     color: var(--text-clr);
+    /* color: red; */
 }
 
 .table__header button{
@@ -91,10 +92,8 @@ main.table {
     width: 95%;
     max-height: calc(89% - 1.6rem);
     background-color: var(--line-clr);
-
     margin: .8rem auto;
     border-radius: .6rem;
-
     overflow: auto;
     overflow: overlay;
 }
@@ -160,17 +159,18 @@ td.actions .delete{
 
 td.actions input{
    padding: .4rem;  
-   border: 1px solid var(--base-clr);
+   border: 1px solid var(--secondary-text-clr2);
    border-radius: .4rem;
    outline: none;
    background: transparent;
+   color: var(--secondary-text-clr);
+   font-weight: bold;
 }
 
 thead th {
     position: sticky;
     top: 0;
     left: 0;
-    /* background-color: #d5d1defe; */
     background-color: var(--hover-clr);
     cursor: pointer;
     text-transform: capitalize;

@@ -45,14 +45,18 @@
         
        #credentials input[type = "submit"]{
           width: 20%;
-          margin-left: 12rem;
+          margin-left: 15rem;
           cursor: pointer;
           font-weight: 500;
           font-size: 1.1em;
           border-radius: .3rem;
           border: none;
           outline: none;
-          padding: 0 .2rem;
+          padding: .2rem .4rem;
+       }
+        
+       .table__body{
+        max-height: calc(60% - 5rem);
        }
 
        .fail{
@@ -133,9 +137,8 @@
             <label for="">Telephone Number</label><br>
             <input type="text" name="tel">
             </div>
-            <input type="submit" name="submit">
         </div>
-        <!-- <input type="submit" name="submit"> -->
+        <input type="submit" name="submit">
         </main>
         </form>
     </main>

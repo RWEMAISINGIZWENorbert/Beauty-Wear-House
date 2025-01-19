@@ -1,7 +1,6 @@
 <?php
- 
  include '../config/db_connect.php';
- 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,6 +8,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+    a{
+        text-decoration: none;
+       }
+    </style>
 </head>
 <body>
 <main class="table" id="customers_table">
@@ -49,6 +53,7 @@
                         <th> Order Date <span class="icon-arrow">&UpArrow;</span></th>
                         <th> Quantity <span class="icon-arrow">&UpArrow;</span></th>
                         <th> Total Amount <span class="icon-arrow">&UpArrow;</span></th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -94,12 +99,13 @@
                         <td> <?php echo $order_date ?> </td>
                         <td><?php echo $data_row['quantity_ordered'] ?> </td>
                         <td> <strong>$210.40</strong> </td>
+                        <td class="actions"><a href="../Controllers/delete_order_controller.php?p_code=<?php echo $data_row['product_code']?>">
+                            <p class="delete">Delete</p></a>
+                        </td>
                     </tr>
                     <?php 
                        }
-                     }else{ 
-                        // echo  "failed";
-                    }
+                     }
                     }
                     }
                     ?>
