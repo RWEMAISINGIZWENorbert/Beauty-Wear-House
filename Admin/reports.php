@@ -22,14 +22,32 @@
                 <input type="search" placeholder="Search Data...">
             </div>
             <div class="daily-report">
-                <form action="" method="GET" onchange="this.form.submit()">
-                      <select name="report" id="">
+                <form action="" method="GET" >
+                      <select name="report" id="" onchange="updateUrl(this)">
                           <option value="all">All</option>
-                          <option value="Today" name='data'>Today</option>
-                          <option value="week">This Week</option>
+                          <option value="Today">Today</option>
+                          <option value="week" >This Week</option>
                           <option value="month">Month</option>
                       </select>
                       </form>
+                      <script>
+                            function updateUrl(selectElement) {
+                            const selectedValue = selectElement.value;
+                            const newUrl = new URL(window.location.href);
+                            newUrl.searchParams.set('report', selectedValue);
+                            window.history.pushState({}, '', newUrl);
+                          window.location.href = newUrl;
+                      }
+
+            //           (function retainSelectedOption() {
+            //               const urlParams = new URLSearchParams(window.location.search);
+            //               const selectedReport = urlParams.get('report'); // Get 'report' parameter from the URL
+            //                 if (selectedReport) {
+            //                    const selectElement = document.getElementById('report');
+            //                    selectElement.value = selectedReport; // Set the selected option
+            // }
+            // })();
+                      </script>
                 </div>
             <div class="export__file">
                 <label for="export-file" class="export__file-btn" title="Export File"></label>
@@ -52,13 +70,13 @@
                         <th> Location <span class="icon-arrow">&UpArrow;</span></th>
                         <th> Order Date <span class="icon-arrow">&UpArrow;</span></th>
                         <th> Quantity <span class="icon-arrow">&UpArrow;</span></th>
-                        <th> Total Amount <span class="icon-arrow">&UpArrow;</span></th>
+                        <th> Tel no <span class="icon-arrow">&UpArrow;</span></th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                       $report = isset($_GET['report']) ? $_GET['report']: 'all';
+                       $report = isset($_GET['report']) ? $_GET['report']: 'All';
                        $sql_command = "SELECT * FROM `order`";                         
                      if($report == 'Today') {
                         $sql_command .= " WHERE DATE(STR_TO_DATE(order_date, '%Y-%m-%d %H:%i:%s')) = CURDATE()";
@@ -66,8 +84,8 @@
                         $sql_command .= " WHERE YEARWEEK(STR_TO_DATE(order_date, '%Y-%m-%d %H:%i:%s'), 1) = YEARWEEK(CURDATE(), 1)";
                     }elseif ($report == 'month') {
                         $sql_command .= " WHERE MONTH(STR_TO_DATE(order_date, '%Y-%m-%d %H:%i:%s')) = MONTH(CURDATE()) AND YEAR(STR_TO_DATE(order_date, '%Y-%m-%d %H:%i:%s')) = YEAR(CURDATE())";
-                    }elseif($report == 'All'){
-                        $sql_command .= "WHERE 1";
+                    }elseif($report == 'all'){
+                        // $sql_command .= "WHERE 1";
                     }
                       
                     $sql_result = $conn->query($sql_command);
@@ -76,7 +94,7 @@
                           while($row = $sql_result->fetch_assoc()){
                             $order_num = $row['order_number'];
                              $order_date = $row['order_date'];
-                              $sql_data = "SELECT * FROM customer WHERE order_number = '$order_num'";
+                              $sql_data = "SELECT * FROM customer WHERE order_number = '$order_num' AND quantity_ordered > 0";
                               $data_result = $conn->query($sql_data);
                               if($data_result->num_rows > 0){
                                    while($data_row = $data_result->fetch_assoc()){
@@ -98,7 +116,7 @@
                         <td> <?php echo $data_row['location']?> </td>
                         <td> <?php echo $order_date ?> </td>
                         <td><?php echo $data_row['quantity_ordered'] ?> </td>
-                        <td> <strong>$210.40</strong> </td>
+                        <td> <strong><?php echo $data_row['telephone'] ?> </strong> </td>
                         <td class="actions"><a href="../Controllers/delete_order_controller.php?p_code=<?php echo $data_row['product_code']?>">
                             <p class="delete">Delete</p></a>
                         </td>

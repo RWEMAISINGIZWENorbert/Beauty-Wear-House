@@ -116,7 +116,7 @@ h1{
     animation: glow 1.5s infinite alternate;
 }
 
-p {
+p{
     font-size: 1.5em;
     margin: 10px 0 0;
     animation: moveUp 2s ease-in-out;
@@ -162,3 +162,4 @@ button#start{
     cursor: pointer;
     animation: moveUp 2s ease-in-out;
 }
+

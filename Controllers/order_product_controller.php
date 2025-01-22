@@ -12,10 +12,9 @@ if(isset($_POST['submit'])){
 
     if(isset($_POST['order_quantity'])){
         $order_qauntities = $_POST['order_quantity'];
+        print_r($order_qauntities);
         foreach($order_qauntities as $p_code => $quantity){
-        //    if(!$quantity){
-        //      header("location: ../Admin/admin_dashboard.php?route=order&fail=Please order before conitinue");
-        //    }
+            if(in_array($quantity > 0, $order_qauntities)){
            $sql_command = "SELECT * FROM products WHERE productCode = '$p_code'";
            $sql_result = $conn->query($sql_command);
            if($sql_result -> num_rows > 0){
@@ -33,7 +32,9 @@ if(isset($_POST['submit'])){
                     $order_number = mysqli_insert_id($conn);
                   }
                   $new_quantity = $row['product_quantity'] - $quantity;
-                  $update = "UPDATE products SET product_quantity = '$new_quantity' WHERE productCode = '$p_code'";
+                  if($p_code >0){
+                    $update = "UPDATE products SET product_quantity = '$new_quantity' WHERE productCode = '$p_code'";
+                  }
                   $update_result = $conn->query($update); 
 
                   if($update_result){
@@ -48,6 +49,9 @@ if(isset($_POST['submit'])){
                   }
             }
            }
+        }else{
+            header("location: ../Admin/admin_dashboard.php?route=order&fail=Please order at lesat one product");
+        }
         }
     }
 } 

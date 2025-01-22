@@ -13,24 +13,43 @@
     <title>Document</title>
     <link rel="stylesheet" href="../styles/style.css">
     <style>
+                main .container{
+            height: 65%;
+            width: 40%;
+        }
          .bot{
             display: flex;
             justify-content: space-between;
-            gap: 4rem;
+            gap: 10rem;
+            width: 90%;
+            transform: translateX(-5rem);
          }
+         .bot button {
+            font-size: 1.2em;
+            font-weight: 500;
+            cursor: pointer;
+            width: 90%;
+         }
+         form {
+            transform: translateX(-3rem);
+        }
+        h1{
+            text-align: center;
+            margin: 1rem 0;
+        }
     </style>
 </head>
 <body>
    <main>
       <div class="container">
-          <h2>Edit Product </h2>
-          <form action="../Controllers/edit_product_controller.php" method="POST">
             <?php
             $sql_command = "SELECT * FROM products WHERE productCode = '$p_code'";
             $sql_result = $conn->query($sql_command);
              if($sql_result -> num_rows > 0){
                  while($row = $sql_result -> fetch_assoc()){
             ?>
+                   <h1>Edit Product </h1>
+               <form action="../Controllers/edit_product_controller.php" method="POST">
                 <input type="hidden" name="p_code" value="<?php echo $row['productCode']?>">
                 <label for="">product Name</label><br>
                 <input type="text" name="product_name" value="<?php echo $row['productName']?>"><br><br>
@@ -42,8 +61,8 @@
                     <button>cancel</button>
                     <input type="submit" value="Save" name="submit">
                  </div>
+                 </form>
                  <?php }} ?>
-          </form>
       </div>
    </main>
 </body>

@@ -16,6 +16,9 @@
          color: #008000;
           transition: all 0.3s ease;
         }
+        p.fail{
+            margin-right: 2rem;
+        }
         h1{
             text-align: center;
             margin: 1rem 0;
@@ -28,8 +31,13 @@
 <body>
     <main>
         <div class="container">
-            <p class="fail"></p>
-            <p class="success"></p>
+            <?php
+                if(isset($_GET['fail'])){
+                    echo "<p class = 'fail'>*". $_GET['fail']. "*</p>";
+                }elseif(isset($_GET['success'])){
+                    echo "<p class = 'success'>*". $_GET['success']. "*</p>";
+                }
+              ?>
              <h1>Add Product</h1>
              <form action="../Controllers/add_product_controller.php" method="POST">
                    <label for="">Product Name</label><br>

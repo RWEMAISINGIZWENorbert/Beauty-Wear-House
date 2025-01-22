@@ -78,7 +78,7 @@
             if(isset($_GET['fail'])){
                 echo "<p class='fail'>*". $_GET['fail']. "*</p>";
             }elseif(isset($_GET['success'])){
-                echo "<p class='success'>*". $_GET['success']. "*</p>";
+                echo "<p class='success'>*". $_GET['success']. "* <a href='../Admin/admin_dashboard.php?route=reports'>View orders</a></p>";
             }
          ?>
         <section class="table__header">

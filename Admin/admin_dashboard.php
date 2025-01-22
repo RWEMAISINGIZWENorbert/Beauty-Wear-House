@@ -11,6 +11,11 @@
     <link rel="stylesheet" href="../styles/admin.css">
      <link rel="stylesheet" href="../styles/table.css">
 </head>
+  <style>
+       ul{
+        height: 80%;
+       }
+  </style>
 <body>
     <nav id="sideBar">
           <ul>
