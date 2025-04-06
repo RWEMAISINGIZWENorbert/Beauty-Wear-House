@@ -58,7 +58,7 @@
                  <label for="">Unity Price</label><br>
                  <input type="number" name="unity_price" id="" value="<?php echo $row['unit_price']?>"><br><br>
                  <div class="bot">
-                    <button>cancel</button>
+                   <button><a href="../Admin/admin_dashboard.php?route=products">cancel</a></button> 
                     <input type="submit" value="Save" name="submit">
                  </div>
                  </form>

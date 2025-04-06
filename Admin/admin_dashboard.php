@@ -1,6 +1,9 @@
 <?php
-  session_start();
- if(isset($_SESSION['email'])){
+//   session_start();
+//  if(isset($_SESSION['email'])){
+  
+include "../config/session.php";
+ 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,6 +18,12 @@
        ul{
         height: 80%;
        }
+       li:nth-last-child(1){
+         margin-top: 10rem;
+       }
+      ul li a{
+        margin-left: 1.5rem;
+      }
   </style>
 <body>
     <nav id="sideBar">
@@ -43,7 +52,3 @@
     ?>
 </body>
 </html>
-<?php }else{
-    header("location: ../Auth/Sign_in.php");
-}
-?>

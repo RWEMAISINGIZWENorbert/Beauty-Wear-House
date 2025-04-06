@@ -13,13 +13,13 @@
     if($sql_result -> num_rows > 0){
          session_start();
          $_SESSION['email'] = $email;
-         if($_SESSION['email']){
+    //      if($_SESSION['email']){
             header("location: ../Admin/admin_dashboard.php?route=products");
-         }else{
-            header("location: ../Auth/Sign_in.php?fail=Login first");
-         }
-    }else{
-        header("location: ../Auth/Sign_in.php?fail=User Not found");
+    //      }else{
+    //         header("location: ../Auth/Sign_in.php?fail=Login first");
+    //      }
+    // }else{
+    //     header("location: ../Auth/Sign_in.php?fail=User Not found");
     }
     // session_destroy();
   }

@@ -38,15 +38,6 @@
                             window.history.pushState({}, '', newUrl);
                           window.location.href = newUrl;
                       }
-
-            //           (function retainSelectedOption() {
-            //               const urlParams = new URLSearchParams(window.location.search);
-            //               const selectedReport = urlParams.get('report'); // Get 'report' parameter from the URL
-            //                 if (selectedReport) {
-            //                    const selectElement = document.getElementById('report');
-            //                    selectElement.value = selectedReport; // Set the selected option
-            // }
-            // })();
                       </script>
                 </div>
             <div class="export__file">

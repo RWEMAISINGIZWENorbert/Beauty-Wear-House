@@ -83,10 +83,6 @@
          ?>
         <section class="table__header">
             <h1>Place Order</h1>
-            <!-- <div class="input-group">
-                <input type="search" placeholder="Search Data...">
-                <img src="../images/search.png" alt="">
-            </div> -->
         </section>
         <section class="table__body">
             <table>
